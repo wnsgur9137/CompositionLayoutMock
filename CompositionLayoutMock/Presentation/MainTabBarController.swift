@@ -11,6 +11,7 @@ protocol MainTabBarControllerDependencies {
     func makeFirstViewController() -> ViewController
     func makeSecondViewController() -> SecondViewController
     func makeThirdViewController() -> ThirdViewController
+    func makeFourthViewController() -> FourthViewController
 }
 
 final class MainTabBarController: UITabBarController {
@@ -41,10 +42,14 @@ final class MainTabBarController: UITabBarController {
         let thirdTab = UINavigationController(rootViewController: dependencies.makeThirdViewController())
         thirdTab.tabBarItem = UITabBarItem(title: "DecorationView\nBadge", image: nil, selectedImage: nil)
         
+        let fourthTab = UINavigationController(rootViewController: dependencies.makeFourthViewController())
+        fourthTab.tabBarItem = UITabBarItem(title: "orthogonalScrolling", image: nil, selectedImage: nil)
+        
         self.viewControllers = [
             firstTab,
             secondTab,
-            thirdTab
+            thirdTab,
+            fourthTab
         ]
     }
 }

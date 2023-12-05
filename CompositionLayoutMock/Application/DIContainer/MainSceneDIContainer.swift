@@ -29,4 +29,8 @@ extension MainSceneDIContainer: MainTabBarControllerDependencies {
     func makeThirdViewController() -> ThirdViewController {
         return ThirdViewController.create()
     }
+    
+    func makeFourthViewController() -> FourthViewController {
+        return FourthViewController.create()
+    }
 }
