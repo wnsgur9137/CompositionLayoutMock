@@ -8,6 +8,9 @@
 import UIKit
 
 final class DecorationView: UICollectionReusableView {
+    
+    static let reuseIdentifier = String(describing: DecorationView.self)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white.withAlphaComponent(1)
