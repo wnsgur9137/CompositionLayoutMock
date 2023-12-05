@@ -10,6 +10,7 @@ import UIKit
 protocol MainTabBarControllerDependencies {
     func makeFirstViewController() -> ViewController
     func makeSecondViewController() -> SecondViewController
+    func makeThirdViewController() -> ThirdViewController
 }
 
 final class MainTabBarController: UITabBarController {
@@ -18,6 +19,7 @@ final class MainTabBarController: UITabBarController {
     
     init(dependencies: MainTabBarControllerDependencies) {
         self.dependencies = dependencies
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -26,18 +28,23 @@ final class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTabs()
     }
     
     private func setupTabs() {
         let firstTab = UINavigationController(rootViewController: dependencies.makeFirstViewController())
-        firstTab.tabBarItem = UITabBarItem(title: "First", image: nil, selectedImage: nil)
+        firstTab.tabBarItem = UITabBarItem(title: "Base", image: nil, selectedImage: nil)
         
         let secondTab = UINavigationController(rootViewController: dependencies.makeSecondViewController())
-        secondTab.tabBarItem = UITabBarItem(title: nil, image: nil, selectedImage: nil)
+        secondTab.tabBarItem = UITabBarItem(title: "Header/Footer\nSideView", image: nil, selectedImage: nil)
+        
+        let thirdTab = UINavigationController(rootViewController: dependencies.makeThirdViewController())
+        thirdTab.tabBarItem = UITabBarItem(title: "DecorationView\nBadge", image: nil, selectedImage: nil)
         
         self.viewControllers = [
             firstTab,
-            secondTab
+            secondTab,
+            thirdTab
         ]
     }
 }

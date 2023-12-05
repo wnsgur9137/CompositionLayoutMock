@@ -1,32 +1,18 @@
 //
-//  ViewController.swift
+//  ThirdViewController.swift
 //  CompositionLayoutMock
 //
-//  Created by JunHyeok Lee on 12/1/23.
+//  Created by JunHyeok Lee on 12/5/23.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    /*
-    .absolute - 고정 크기
-    .estimated - Runtime에 변경
-    .fractional - 비율
+/*
+ DecorationView,
+ Badge
+ */
 
-    let absoluteSize = NSCollectionLayoutSize(
-        widthDimension: .absolute(32),
-        heightDimension: .absolute(32)
-    )
-    let estimatedSize = NSCollectionLayoutSize(
-        widthDimension: .estimated(120),
-        heightDimension: .estimated(120)
-    )
-    let fractionalSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(0.2),
-        heightDimension: .fractionalHeight(0.2)
-    )
-    */
-    
+class ThirdViewController: UIViewController {
     enum MySection {
         case first([FirstItem])
         case second([SecondItem])
@@ -57,8 +43,8 @@ class ViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    static func create() -> ViewController {
-        let viewController = ViewController()
+    static func create() -> ThirdViewController {
+        let viewController = ThirdViewController()
         viewController.navigationController?.isNavigationBarHidden = true
         return viewController
     }
@@ -128,7 +114,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension ThirdViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.dataSource.count
     }
@@ -155,7 +141,7 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 // MARK: - Layout
-extension ViewController {
+extension ThirdViewController {
     private func addSubviews() {
         self.view.addSubview(collectionView)
     }

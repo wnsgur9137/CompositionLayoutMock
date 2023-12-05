@@ -5,7 +5,11 @@
 //  Created by JunHyeok Lee on 12/4/23.
 //
 
-// MARK: - Header, Footer, Side View
+/*
+ HeaderView,
+ FooterView,
+ SideView (Left, Right)
+ */
 
 import UIKit
 
@@ -31,6 +35,10 @@ final class SecondViewController: UIViewController {
         collectionView.contentInset = .zero
         collectionView.clipsToBounds = true
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
+        collectionView.register(HeaderFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
+        collectionView.register(HeaderFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "FooterView")
+        collectionView.register(HeaderFooterView.self, forSupplementaryViewOfKind: "LeftView", withReuseIdentifier: "LeftView")
+        collectionView.register(HeaderFooterView.self, forSupplementaryViewOfKind: "RightView", withReuseIdentifier: "RightView")
         return collectionView
     }()
     
@@ -43,11 +51,18 @@ final class SecondViewController: UIViewController {
     
     static func create() -> SecondViewController {
         let viewController = SecondViewController()
+        viewController.navigationController?.isNavigationBarHidden = true
         return viewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addSubviews()
+        setupCollectionViewLayoutConstraints()
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     static func getCollectionViewCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -76,6 +91,27 @@ final class SecondViewController: UIViewController {
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
+                
+                // Header
+                let headerFooterSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(100.0)
+                )
+                let header = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerFooterSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top
+                )
+                
+                // footer
+                let footer = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerFooterSize,
+                    elementKind: UICollectionView.elementKindSectionFooter,
+                    alignment: .bottom
+                )
+                section.boundarySupplementaryItems = [header, footer]
+                
+                // Footer
                 return section
                 
             default:
@@ -93,20 +129,47 @@ final class SecondViewController: UIViewController {
                 
                 // Group
                 let groupSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
+                    widthDimension: .fractionalWidth(0.8),
                     heightDimension: .fractionalHeight(groupFractionalHeightFraction)
                 )
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                group.edgeSpacing = NSCollectionLayoutEdgeSpacing(
+                    leading: .flexible(0),
+                    top: nil,
+                    trailing: .flexible(0),
+                    bottom: nil
+                )
                 
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
+                
+                // Left View
+                let leftRightSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.1),
+                    heightDimension: .fractionalHeight(1.0)
+                )
+                let leftView = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: leftRightSize,
+                    elementKind: "LeftView",
+                    alignment: .leading
+                )
+                
+                // Right View
+                let rightView = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: leftRightSize,
+                    elementKind: "RightView",
+                    alignment: .trailing
+                )
+                section.boundarySupplementaryItems = [leftView, rightView]
+                
                 return section
             }
         }
     }
 }
 
+// MARK: - CollectionView DataSource
 extension SecondViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.dataSource.count
@@ -130,6 +193,36 @@ extension SecondViewController: UICollectionViewDataSource {
             cell.prepare(text: items[indexPath.item].value)
         }
         return cell
+    }
+}
+
+// MARK: - CollectionView Delegate
+extension SecondViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderFooterView else { return .init() }
+            headerView.prepare(text: "Header")
+            return headerView
+            
+        case UICollectionView.elementKindSectionFooter:
+            guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FooterView", for: indexPath) as? HeaderFooterView else { return .init() }
+            footerView.prepare(text: "Footer")
+            return footerView
+            
+        case "LeftView":
+            guard let leftView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LeftView", for: indexPath) as? HeaderFooterView else { return .init() }
+            leftView.prepare(text: "LeftView")
+            return leftView
+            
+        case "RightView":
+            guard let rightView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "RightView", for: indexPath) as? HeaderFooterView else { return .init() }
+            rightView.prepare(text: "RightView")
+            return rightView
+            
+        default:
+            return .init()
+        }
     }
 }
 
