@@ -1,32 +1,18 @@
 //
-//  ViewController.swift
+//  ThirdViewController.swift
 //  CompositionLayoutMock
 //
-//  Created by JunHyeok Lee on 12/1/23.
+//  Created by JunHyeok Lee on 12/5/23.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    /*
-    .absolute - 고정 크기
-    .estimated - Runtime에 변경
-    .fractional - 비율
+/*
+ DecorationView,
+ Badge
+ */
 
-    let absoluteSize = NSCollectionLayoutSize(
-        widthDimension: .absolute(32),
-        heightDimension: .absolute(32)
-    )
-    let estimatedSize = NSCollectionLayoutSize(
-        widthDimension: .estimated(120),
-        heightDimension: .estimated(120)
-    )
-    let fractionalSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(0.2),
-        heightDimension: .fractionalHeight(0.2)
-    )
-    */
-    
+class BadgeViewController: UIViewController {
     enum MySection {
         case first([FirstItem])
         case second([SecondItem])
@@ -47,6 +33,7 @@ class ViewController: UIViewController {
         collectionView.contentInset = .zero
         collectionView.clipsToBounds = true
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
+        collectionView.register(BadgeView.self, forSupplementaryViewOfKind: BadgeView.reuseIdentifier, withReuseIdentifier: BadgeView.reuseIdentifier)
         return collectionView
     }()
     
@@ -57,8 +44,8 @@ class ViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    static func create() -> ViewController {
-        let viewController = ViewController()
+    static func create() -> BadgeViewController {
+        let viewController = BadgeViewController()
         viewController.navigationController?.isNavigationBarHidden = true
         return viewController
     }
@@ -69,10 +56,11 @@ class ViewController: UIViewController {
         setupCollectionViewLayoutConstraints()
         
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
     
     static func getCollectionViewCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout { (section, env) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { (section, env) -> NSCollectionLayoutSection? in
             switch section {
             case 0:
                 let itemFractionalWidthFraction = 1.0 / 3.0 // horizontal 3개의 셀
@@ -97,6 +85,12 @@ class ViewController: UIViewController {
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
+                
+                // DecorationView
+                let decorationView = NSCollectionLayoutDecorationItem.background(elementKind: DecorationView.reuseIdentifier)
+                decorationView.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+                section.decorationItems = [decorationView]
+                
                 return section
                 
             default:
@@ -104,12 +98,27 @@ class ViewController: UIViewController {
                 let groupFractionalHeightFraction = 1.0 / 4.0 // vertical 4개의 셀
                 let itemInset: CGFloat = 2.5
                 
+                // Badge
+                let badgeItemSIze = NSCollectionLayoutSize(
+                    widthDimension: .absolute(24.0),
+                    heightDimension: .absolute(24.0)
+                )
+                let badgeItemAnchor = NSCollectionLayoutAnchor(
+                    edges: [.top, .trailing],
+                    fractionalOffset: CGPoint(x: 0.3, y: -0.3)
+                )
+                let badgeItem = NSCollectionLayoutSupplementaryItem(
+                    layoutSize: badgeItemSIze,
+                    elementKind: BadgeView.reuseIdentifier,
+                    containerAnchor: badgeItemAnchor
+                )
+                
                 // Item
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(itemFractionalWidthFraction),
                     heightDimension: .fractionalHeight(1)
                 )
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let item = NSCollectionLayoutItem(layoutSize: itemSize, supplementaryItems: [badgeItem])
                 item.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
                 
                 // Group
@@ -122,13 +131,17 @@ class ViewController: UIViewController {
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
+                
                 return section
             }
         }
+        layout.register(DecorationView.self, forDecorationViewOfKind: DecorationView.reuseIdentifier)
+        return layout
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+// MARK: - CollectionView DataSource
+extension BadgeViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.dataSource.count
     }
@@ -154,8 +167,22 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - CollectionView Delegate
+extension BadgeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case BadgeView.reuseIdentifier:
+            guard let badgeView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BadgeView.reuseIdentifier, for: indexPath) as? BadgeView else { return .init() }
+            return badgeView
+            
+        default:
+            return .init()
+        }
+    }
+}
+
 // MARK: - Layout
-extension ViewController {
+extension BadgeViewController {
     private func addSubviews() {
         self.view.addSubview(collectionView)
     }

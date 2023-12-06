@@ -8,10 +8,10 @@
 import UIKit
 
 protocol MainTabBarControllerDependencies {
-    func makeFirstViewController() -> ViewController
-    func makeSecondViewController() -> SecondViewController
-    func makeThirdViewController() -> ThirdViewController
-    func makeFourthViewController() -> FourthViewController
+    func makeFirstViewController() -> BaseCompositionLayoutController
+    func makeSecondViewController() -> SupplementaryViewController
+    func makeThirdViewController() -> BadgeViewController
+    func makeFourthViewController() -> VerticalCollectionViewController
 }
 
 final class MainTabBarController: UITabBarController {

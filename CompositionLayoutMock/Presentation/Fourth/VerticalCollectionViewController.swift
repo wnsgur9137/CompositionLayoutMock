@@ -24,7 +24,7 @@
 
 import UIKit
 
-final class FourthViewController: UIViewController {
+final class VerticalCollectionViewController: UIViewController {
     enum MySection {
         case first([FirstItem])
         case second([SecondItem])
@@ -55,8 +55,8 @@ final class FourthViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    static func create() -> FourthViewController {
-        let viewController = FourthViewController()
+    static func create() -> VerticalCollectionViewController {
+        let viewController = VerticalCollectionViewController()
         viewController.navigationController?.isNavigationBarHidden = true
         return viewController
     }
@@ -155,7 +155,7 @@ final class FourthViewController: UIViewController {
     }
 }
 
-extension FourthViewController: UICollectionViewDataSource {
+extension VerticalCollectionViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.dataSource.count
     }
@@ -182,7 +182,7 @@ extension FourthViewController: UICollectionViewDataSource {
 }
 
 // MARK: - Layout
-extension FourthViewController {
+extension VerticalCollectionViewController {
     private func addSubviews() {
         self.view.addSubview(collectionView)
     }

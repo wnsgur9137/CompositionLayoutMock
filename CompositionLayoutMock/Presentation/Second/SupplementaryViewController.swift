@@ -13,7 +13,7 @@
 
 import UIKit
 
-final class SecondViewController: UIViewController {
+final class SupplementaryViewController: UIViewController {
     
     enum MySection {
         case first([FirstItem])
@@ -49,8 +49,8 @@ final class SecondViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    static func create() -> SecondViewController {
-        let viewController = SecondViewController()
+    static func create() -> SupplementaryViewController {
+        let viewController = SupplementaryViewController()
         viewController.navigationController?.isNavigationBarHidden = true
         return viewController
     }
@@ -170,7 +170,7 @@ final class SecondViewController: UIViewController {
 }
 
 // MARK: - CollectionView DataSource
-extension SecondViewController: UICollectionViewDataSource {
+extension SupplementaryViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.dataSource.count
     }
@@ -197,7 +197,7 @@ extension SecondViewController: UICollectionViewDataSource {
 }
 
 // MARK: - CollectionView Delegate
-extension SecondViewController: UICollectionViewDelegate {
+extension SupplementaryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
@@ -227,7 +227,7 @@ extension SecondViewController: UICollectionViewDelegate {
 }
 
 // MARK: - Layout
-extension SecondViewController {
+extension SupplementaryViewController {
     private func addSubviews() {
         self.view.addSubview(collectionView)
     }

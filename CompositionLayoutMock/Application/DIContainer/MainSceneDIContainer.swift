@@ -18,19 +18,19 @@ final class MainSceneDIContainer {
 }
 
 extension MainSceneDIContainer: MainTabBarControllerDependencies {
-    func makeFirstViewController() -> ViewController {
-        return ViewController.create()
+    func makeFirstViewController() -> BaseCompositionLayoutController {
+        return BaseCompositionLayoutController.create()
     }
     
-    func makeSecondViewController() -> SecondViewController {
-        return SecondViewController.create()
+    func makeSecondViewController() -> SupplementaryViewController {
+        return SupplementaryViewController.create()
     }
     
-    func makeThirdViewController() -> ThirdViewController {
-        return ThirdViewController.create()
+    func makeThirdViewController() -> BadgeViewController {
+        return BadgeViewController.create()
     }
     
-    func makeFourthViewController() -> FourthViewController {
-        return FourthViewController.create()
+    func makeFourthViewController() -> VerticalCollectionViewController {
+        return VerticalCollectionViewController.create()
     }
 }
