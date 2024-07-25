@@ -33,4 +33,11 @@ extension MainSceneDIContainer: MainTabBarControllerDependencies {
     func makeFourthViewController() -> VerticalCollectionViewController {
         return VerticalCollectionViewController.create()
     }
+    
+    private func makeTestViewModel() -> TestViewModel {
+        return TestViewModel()
+    }
+    func makeTestViewController() -> TestViewController {
+        return TestViewController.create(with: makeTestViewModel())
+    }
 }

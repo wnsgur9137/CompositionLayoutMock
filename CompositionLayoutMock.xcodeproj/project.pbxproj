@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A85EE5272C51DD5D00F8B9CE /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5252C51DD5D00F8B9CE /* TestViewController.swift */; };
+		A85EE52B2C51DD6D00F8B9CE /* TestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE52A2C51DD6D00F8B9CE /* TestAdapter.swift */; };
+		A85EE52D2C51DD9200F8B9CE /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE52C2C51DD9200F8B9CE /* TestViewModel.swift */; };
+		A85EE5482C51DE1200F8B9CE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5442C51DE1200F8B9CE /* HeaderView.swift */; };
+		A85EE5492C51DE1200F8B9CE /* ChargeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5402C51DE1200F8B9CE /* ChargeCell.swift */; };
+		A85EE54A2C51DE1200F8B9CE /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5452C51DE1200F8B9CE /* HistoryCell.swift */; };
+		A85EE54B2C51DE1200F8B9CE /* VoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5462C51DE1200F8B9CE /* VoteCell.swift */; };
+		A85EE54C2C51DE1200F8B9CE /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5432C51DE1200F8B9CE /* HeaderCell.swift */; };
+		A85EE54D2C51DE1200F8B9CE /* CommunityBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5412C51DE1200F8B9CE /* CommunityBannerCell.swift */; };
+		A85EE54E2C51DE1200F8B9CE /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85EE5422C51DE1200F8B9CE /* CommunityCell.swift */; };
 		A86C01FC2B1D77DC002C7B0A /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86C01FB2B1D77DC002C7B0A /* CollectionViewCell.swift */; };
 		A86C01FE2B1DB66B002C7B0A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86C01FD2B1DB66B002C7B0A /* MainTabBarController.swift */; };
 		A86C02032B1DB6FF002C7B0A /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86C02022B1DB6FF002C7B0A /* AppDIContainer.swift */; };
@@ -45,6 +55,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A85EE5252C51DD5D00F8B9CE /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		A85EE52A2C51DD6D00F8B9CE /* TestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAdapter.swift; sourceTree = "<group>"; };
+		A85EE52C2C51DD9200F8B9CE /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
+		A85EE5402C51DE1200F8B9CE /* ChargeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeCell.swift; sourceTree = "<group>"; };
+		A85EE5412C51DE1200F8B9CE /* CommunityBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBannerCell.swift; sourceTree = "<group>"; };
+		A85EE5422C51DE1200F8B9CE /* CommunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
+		A85EE5432C51DE1200F8B9CE /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		A85EE5442C51DE1200F8B9CE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		A85EE5452C51DE1200F8B9CE /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		A85EE5462C51DE1200F8B9CE /* VoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
 		A86C01FB2B1D77DC002C7B0A /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		A86C01FD2B1DB66B002C7B0A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A86C02022B1DB6FF002C7B0A /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
@@ -94,6 +114,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A85EE5262C51DD5D00F8B9CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A85EE5472C51DE1200F8B9CE /* Subviews */,
+				A85EE5252C51DD5D00F8B9CE /* TestViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A85EE5282C51DD5D00F8B9CE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A85EE52C2C51DD9200F8B9CE /* TestViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A85EE5292C51DD6400F8B9CE /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				A85EE52A2C51DD6D00F8B9CE /* TestAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		A85EE5472C51DE1200F8B9CE /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A85EE5402C51DE1200F8B9CE /* ChargeCell.swift */,
+				A85EE5412C51DE1200F8B9CE /* CommunityBannerCell.swift */,
+				A85EE5422C51DE1200F8B9CE /* CommunityCell.swift */,
+				A85EE5432C51DE1200F8B9CE /* HeaderCell.swift */,
+				A85EE5442C51DE1200F8B9CE /* HeaderView.swift */,
+				A85EE5452C51DE1200F8B9CE /* HistoryCell.swift */,
+				A85EE5462C51DE1200F8B9CE /* VoteCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		A86C01FF2B1DB679002C7B0A /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +181,7 @@
 				A86C020A2B1DB872002C7B0A /* Second */,
 				A86C020F2B1EAEBF002C7B0A /* Third */,
 				A86C02162B1EB976002C7B0A /* Fourth */,
+				A89839042B2C133D0002DDAA /* Test */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -216,6 +276,16 @@
 				A86DD2542B196DD400B6D73A /* CompositionLayoutMockUITestsLaunchTests.swift */,
 			);
 			path = CompositionLayoutMockUITests;
+			sourceTree = "<group>";
+		};
+		A89839042B2C133D0002DDAA /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				A85EE5292C51DD6400F8B9CE /* Adapter */,
+				A85EE5282C51DD5D00F8B9CE /* ViewModel */,
+				A85EE5262C51DD5D00F8B9CE /* View */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,15 +418,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85EE5272C51DD5D00F8B9CE /* TestViewController.swift in Sources */,
 				A86C02132B1EB5FB002C7B0A /* BadgeView.swift in Sources */,
 				A86C02092B1DB863002C7B0A /* SupplementaryViewController.swift in Sources */,
 				A86DD2362B196DD200B6D73A /* BaseCompositionLayoutController.swift in Sources */,
 				A86C020E2B1EAEB9002C7B0A /* BadgeViewController.swift in Sources */,
+				A85EE52B2C51DD6D00F8B9CE /* TestAdapter.swift in Sources */,
 				A86C02112B1EB28C002C7B0A /* DecorationView.swift in Sources */,
 				A86C02152B1EB96E002C7B0A /* VerticalCollectionViewController.swift in Sources */,
 				A86DD2322B196DD200B6D73A /* AppDelegate.swift in Sources */,
 				A86C02032B1DB6FF002C7B0A /* AppDIContainer.swift in Sources */,
+				A85EE52D2C51DD9200F8B9CE /* TestViewModel.swift in Sources */,
 				A86C01FE2B1DB66B002C7B0A /* MainTabBarController.swift in Sources */,
+				A85EE5482C51DE1200F8B9CE /* HeaderView.swift in Sources */,
+				A85EE5492C51DE1200F8B9CE /* ChargeCell.swift in Sources */,
+				A85EE54A2C51DE1200F8B9CE /* HistoryCell.swift in Sources */,
+				A85EE54B2C51DE1200F8B9CE /* VoteCell.swift in Sources */,
+				A85EE54C2C51DE1200F8B9CE /* HeaderCell.swift in Sources */,
+				A85EE54D2C51DE1200F8B9CE /* CommunityBannerCell.swift in Sources */,
+				A85EE54E2C51DE1200F8B9CE /* CommunityCell.swift in Sources */,
 				A86C01FC2B1D77DC002C7B0A /* CollectionViewCell.swift in Sources */,
 				A86C020C2B1EA316002C7B0A /* HeaderFooterView.swift in Sources */,
 				A86C02052B1DB73D002C7B0A /* MainSceneDIContainer.swift in Sources */,

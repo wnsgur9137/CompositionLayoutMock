@@ -12,6 +12,7 @@ protocol MainTabBarControllerDependencies {
     func makeSecondViewController() -> SupplementaryViewController
     func makeThirdViewController() -> BadgeViewController
     func makeFourthViewController() -> VerticalCollectionViewController
+    func makeTestViewController() -> TestViewController
 }
 
 final class MainTabBarController: UITabBarController {
@@ -45,11 +46,15 @@ final class MainTabBarController: UITabBarController {
         let fourthTab = UINavigationController(rootViewController: dependencies.makeFourthViewController())
         fourthTab.tabBarItem = UITabBarItem(title: "orthogonalScrolling", image: nil, selectedImage: nil)
         
+        let testTab = UINavigationController(rootViewController: dependencies.makeTestViewController())
+        testTab.tabBarItem = UITabBarItem(title: "TEST", image: nil, selectedImage: nil)
+        
         self.viewControllers = [
             firstTab,
             secondTab,
             thirdTab,
-            fourthTab
+            fourthTab,
+            testTab
         ]
     }
 }
